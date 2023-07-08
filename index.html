@@ -11,17 +11,60 @@
 </head>
 <body>
     <div id="app"></div>
+    
     <script  type="text/babel">
+        const container = document.querySelector('#app');
+        const root = ReactDOM.createRoot(container)
+        const TabMenu = () => {
         const useState = React.useState
         const [active, setActive] = useState(1)
         const activate = id => {
+            console.log(id)
             setActive(active => active = id)
         }
+            const items = [
+                {
+                    id: 1,
+                    title: 'サイトの情報'
+                },{
+                    id: 2,
+                    title: '商品情報'
+                },{
+                    id: 3,
+                    title: 'お問い合わせ'
+                }
+            ]
+            return (
+                <>
+                  <section className='tab'>
+                    <ul className='tab__label'>
+                        {items.map(item => (
+                            <li key={item.id}><a className={item.id === active && 'active'} href='#' onClick={() => activate(item.id)}>{item.title}</a></li>
+                        ))}
+                    </ul>
+                    { active === 1 && 
+                    <div className='tab__content'>
+                      サイト情報。
+                    </div>}
 
-        const container = document.querySelector('#app');
-        const root = ReactDOM.createRoot(container)
-        const element = <p>Hello React!</p>
-        root.render(element)
+                    { active === 2 && 
+                    <div className='tab__content'>
+                        商品情報
+                    </div>}
+
+                    { active === 3 && 
+                    <div className='tab__content'>
+                        お問い合わせ。
+                    </div>}
+                  </section>
+                </>
+            )
+        }
+        root.render(
+            <>
+              <TabMenu />
+            </>
+        )
     </script>
 </body>
 </html>
