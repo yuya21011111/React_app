@@ -15,9 +15,9 @@
     <script  type="text/babel">
         const container = document.querySelector('#app');
         const root = ReactDOM.createRoot(container)
-        const TabMenu = () => {
+    const TabMenu = () => {
         const useState = React.useState
-        const [active, setActive] = useState(1)
+        const [active, setActive] = useState(0)
         const activate = id => {
             console.log(id)
             setActive(active => active = id)
@@ -39,7 +39,7 @@
                   <section className='tab'>
                     <ul className='tab__label'>
                         {items.map(item => (
-                            <li key={item.id}><a className={item.id === active && 'active'} href='#' onClick={() => activate(item.id)}>{item.title}</a></li>
+                            <li key={item.id}><a className={item.id === active && 'active' } href='#' onClick={() => activate(item.id)}>{item.title}</a></li>
                         ))}
                     </ul>
                     { active === 1 && 
@@ -59,7 +59,7 @@
                   </section>
                 </>
             )
-        }
+    }
         root.render(
             <>
               <TabMenu />
